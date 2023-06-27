@@ -43,10 +43,10 @@
             "phpstan analyse --memory-limit=2G"
         ],
         "lint": [
-            "phpcs --standard=PSR12 --extensions=php app"
+            "phpcs --standard=PSR12 --extensions=php app database routes tests"
         ],
         "fix-lint": [
-            "phpcbf --standard=PSR12 --extensions=php app"
+            "phpcbf --standard=PSR12 --extensions=php app database routes tests"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
