@@ -23,7 +23,6 @@ class UserController extends Controller
      * Store saves a new user to the database.
      *
      * @param Request $request
-     * @param User $user
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
