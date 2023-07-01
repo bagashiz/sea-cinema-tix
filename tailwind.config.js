@@ -1,31 +1,82 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+    darkMode: "class",
     theme: {
         extend: {
+            colors: {
+                primary: {
+                    50: "#fff1f2",
+                    100: "#ffe4e6",
+                    200: "#fecdd3",
+                    300: "#fda4af",
+                    400: "#fb7185",
+                    500: "#f43f5e",
+                    600: "#e11d48",
+                    700: "#be123c",
+                    800: "#9f1239",
+                    900: "#881337",
+                    950: "#4c0519",
+                },
+            },
             fontFamily: {
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                body: [
+                    "Inter",
+                    "ui-sans-serif",
+                    "system-ui",
+                    "-apple-system",
+                    "system-ui",
+                    "Segoe UI",
+                    "Roboto",
+                    "Helvetica Neue",
+                    "Arial",
+                    "Noto Sans",
+                    "sans-serif",
+                    "Apple Color Emoji",
+                    "Segoe UI Emoji",
+                    "Segoe UI Symbol",
+                    "Noto Color Emoji",
+                ],
+                sans: [
+                    "Inter",
+                    "ui-sans-serif",
+                    "system-ui",
+                    "-apple-system",
+                    "system-ui",
+                    "Segoe UI",
+                    "Roboto",
+                    "Helvetica Neue",
+                    "Arial",
+                    "Noto Sans",
+                    "sans-serif",
+                    "Apple Color Emoji",
+                    "Segoe UI Emoji",
+                    "Segoe UI Symbol",
+                    "Noto Color Emoji",
+                ],
             },
         },
     },
     variants: {
         extend: {
-            backgroundColor: ['active'],
-        }
+            backgroundColor: ["active"],
+        },
     },
     content: [
-        './app/**/*.php',
-        './resources/**/*.html',
-        './resources/**/*.js',
-        './resources/**/*.jsx',
-        './resources/**/*.ts',
-        './resources/**/*.tsx',
-        './resources/**/*.php',
-        './resources/**/*.vue',
-        './resources/**/*.twig',
+        "./app/**/*.php",
+        "./resources/**/*.html",
+        "./resources/**/*.js",
+        "./resources/**/*.jsx",
+        "./resources/**/*.ts",
+        "./resources/**/*.tsx",
+        "./resources/**/*.php",
+        "./resources/**/*.vue",
+        "./resources/**/*.twig",
+        "./node_modules/flowbite/**/*.js",
     ],
     plugins: [
-        require('@tailwindcss/forms'),
-        require('@tailwindcss/typography'),
+        require("@tailwindcss/forms"),
+        require("@tailwindcss/typography"),
+        require("flowbite/plugin"),
     ],
-}
+};
