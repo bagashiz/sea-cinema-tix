@@ -21,6 +21,7 @@ class UserFactory extends Factory
             'password' => fake()->password(),
             'name' => fake()->name(),
             'age' => fake()->numberBetween(1, 100),
+            'balance' => fake()->numberBetween(0, 1000000),
         ];
     }
 }
