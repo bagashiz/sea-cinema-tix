@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -38,8 +39,32 @@ class Movie extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function showtimes(): BelongsToMany
+    public function dates(): BelongsToMany
     {
-        return $this->belongsToMany(Showtime::class, 'movie_showtime');
+        return $this->belongsToMany(Date::class, 'date_movie');
+    }
+
+    /**
+     * scopeFilter defines filter that used in query.
+     *
+     * @param Builder $query
+     * @param string|null $title
+     * @param string|null $sort
+     *
+     * @return void
+     */
+    public function scopeFilter(Builder $query, ?string $title, ?string $sort): void
+    {
+        if ($title ?? false) {
+            $query->where('title', 'like', '%' . $title . '%');
+        }
+
+        if ($sort ?? false) {
+            $sort = str_replace(' ', '_', $sort);
+
+            if ($sort === 'release_date' || $sort === 'age_rating' || $sort === 'ticket_price') {
+                $query->orderBy($sort);
+            }
+        }
     }
 }

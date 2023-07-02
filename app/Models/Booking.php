@@ -19,7 +19,7 @@ class Booking extends Model
      */
     protected $fillable = [
         'user_id',
-        'showtime_id',
+        'date_id',
         'status',
     ];
 
@@ -33,13 +33,13 @@ class Booking extends Model
     ];
 
     /**
-     * Many to one relation to Showtime model.
+     * Many to one relation to Date model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function showtime(): BelongsTo
+    public function date(): BelongsTo
     {
-        return $this->belongsTo(Showtime::class);
+        return $this->belongsTo(Date::class);
     }
 
     /**

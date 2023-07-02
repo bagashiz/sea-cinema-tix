@@ -10,11 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('showtimes', function (Blueprint $table) {
+        Schema::create('date_showtime', function (Blueprint $table) {
             $table->id();
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->datetimes();
+            $table->foreignId('date_id')
+                ->constrained()
+                ->onDelete('cascade');
+            $table->foreignId('showtime_id')
+                ->constrained()
+                ->onDelete('cascade');
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('showtimes');
+        Schema::dropIfExists('date_showtime');
     }
 };

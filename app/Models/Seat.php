@@ -30,12 +30,12 @@ class Seat extends Model
     }
 
     /**
-     * Many to many relation to Showtime model.
+     * Many to many relation to Date model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function showtimes(): BelongsToMany
+    public function dates(): BelongsToMany
     {
-        return $this->belongsToMany(Showtime::class, 'booked_seats');
+        return $this->belongsToMany(Date::class, 'booked_seats');
     }
 }
