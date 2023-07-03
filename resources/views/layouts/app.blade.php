@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('body')
-    <!-- session flash message -->
+    <x-navbar />
     <x-flash-message />
 
     @yield('content')
