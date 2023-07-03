@@ -142,10 +142,11 @@ class UserController extends Controller
     public function update(Request $request, User $user): RedirectResponse
     {
         $formFields = $request->validate([
-            'username' => ['required', 'min:5', 'max:20'],
-            'password' => ['required', 'confirmed', 'min:8', 'max:255'],
-            'name' => ['required', 'min:5', 'max:50'],
-            'age' => ['required', 'integer']
+            'username' => ['sometimes', 'required', 'min:5', 'max:20'],
+            'password' => ['sometimes', 'required', 'confirmed', 'min:8', 'max:255'],
+            'name' => ['sometimes', 'required', 'min:5', 'max:50'],
+            'age' => ['sometimes', 'required', 'integer'],
+            'balance' => ['sometimes', 'required', 'integer'],
         ]);
 
         $formFields['password'] = bcrypt($formFields['password']);
@@ -155,20 +156,5 @@ class UserController extends Controller
         return redirect()
             ->route('users.show', $user)
             ->with('success', 'User updated successfully!');
-    }
-
-    /**
-     * Destroy deletes the current user.
-     *
-     * @param User $user
-     * @return RedirectResponse
-     */
-    public function destroy(User $user): RedirectResponse
-    {
-        $user->delete();
-
-        return redirect()
-            ->route('home')
-            ->with('success', 'User deleted successfully!');
     }
 }

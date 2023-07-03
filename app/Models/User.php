@@ -19,7 +19,8 @@ class User extends Authenticatable
         'username',
         'password',
         'name',
-        'age'
+        'age',
+        'balance',
     ];
 
     /**
@@ -38,6 +39,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'password' => 'hashed',
+        'balance' => 'int',
     ];
 
     /**

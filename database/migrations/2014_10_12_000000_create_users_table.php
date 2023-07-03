@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->string('password');
             $table->string('name');
             $table->integer('age');
+            $table->bigInteger('balance')
+                ->default(0);
             $table->datetimes();
         });
     }

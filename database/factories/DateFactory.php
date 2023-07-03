@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Showtime;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Date>
@@ -17,6 +18,7 @@ class DateFactory extends Factory
     public function definition(): array
     {
         return [
+            'showtime_id' => Showtime::factory(),
             'date' => fake()->unique()->dateTimeBetween('now', '+2 weeks')->format('Y-m-d'),
         ];
     }

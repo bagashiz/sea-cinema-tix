@@ -14,9 +14,6 @@ class ShowtimeSeeder extends Seeder
      */
     public function run(): void
     {
-        // get existing movies from database
-        $movies = Movie::all();
-
         // showtime schedule
         $schedule = [
             ['start' => '10:00', 'end' => '12:00'],
@@ -26,21 +23,12 @@ class ShowtimeSeeder extends Seeder
             ['start' => '20:00', 'end' => '22:00'],
         ];
 
-        // get dates from database
-        $dates = Date::pluck('id');
-
-        foreach ($schedule as $timing) {
-            foreach ($dates as $dateId) {
-                // create showtime record
-                $showtime = Showtime::create([
-                    'date_id' => $dateId,
-                    'start_time' => $timing['start'],
-                    'end_time' => $timing['end'],
-                ]);
-
-                // attach showtime to movies
-                $showtime->movies()->attach($movies);
-            }
+        foreach ($schedule as $time) {
+            // create showtime record
+            Showtime::create([
+                'start_time' => $time['start'],
+                'end_time' => $time['end'],
+            ]);
         }
     }
 }

@@ -31,7 +31,6 @@ class ShowtimeFactory extends Factory
         $endTime = $randomSchedule['end'];
 
         return [
-            'date_id' => DateFactory::new(),
             'start_time' => $startTime,
             'end_time' => $endTime,
         ];

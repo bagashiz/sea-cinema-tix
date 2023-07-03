@@ -16,7 +16,7 @@ return new class extends Migration {
                 ->constrained()
                 ->onDelete('cascade')
                 ->nullable();
-            $table->foreignId('showtime_id')
+            $table->foreignId('date_id')
                 ->constrained()
                 ->onDelete('cascade');
             $table->foreignId('seat_id')

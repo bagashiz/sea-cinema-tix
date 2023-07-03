@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('user_id')
                 ->constrained()
                 ->onDelete('cascade');
-            $table->foreignId('showtime_id')
+            $table->foreignId('date_id')
                 ->constrained()
                 ->onDelete('cascade');
             $table->enum('status', ['pending', 'paid', 'cancelled'])
