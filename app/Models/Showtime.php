@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\TimeCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -26,8 +27,8 @@ class Showtime extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'start_time' => 'string',
-        'end_time' => 'string',
+        'start_time' => TimeCast::class,
+        'end_time' => TimeCast::class,
     ];
 
     /**
@@ -37,6 +38,6 @@ class Showtime extends Model
      */
     public function date(): BelongsToMany
     {
-        return $this->belongsToMany(Date::class, 'date_showtime');
+        return $this->belongsToMany(Date::class)->using(DateShowtime::class);
     }
 }

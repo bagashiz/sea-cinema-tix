@@ -39,7 +39,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'password' => 'hashed',
-        'balance' => 'int',
+        'balance' => 'integer',
     ];
 
     /**
