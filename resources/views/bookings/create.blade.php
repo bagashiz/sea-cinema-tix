@@ -43,9 +43,9 @@
                                 <input type="checkbox" name="seats[]" id="seat{{ $seat->id }}"
                                     value="{{ $seat->id }}"
                                     class="form-checkbox h-4 w-4 text-primary-500 border-gray-300 rounded focus:ring-primary-500"
-                                    {{ $seat->isBooked($date, $showtime) ? 'disabled' : '' }}>
+                                    {{ $seat->isBooked($movie, $date, $showtime) ? 'disabled' : '' }}>
                                 <span
-                                    class="lg:ml-2 {{ $seat->isBooked($date, $showtime) ? 'text-red-500' : 'text-gray-900 dark:text-white' }}">
+                                    class="lg:ml-2 {{ $seat->isBooked($movie, $date, $showtime) ? 'text-red-500' : 'text-gray-900 dark:text-white' }}">
                                     {{ $seat->seat_number }}
                                 </span>
                             </label>
