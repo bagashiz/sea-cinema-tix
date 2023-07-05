@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- User Profile --}}
     <section id="user-profile" class="p-6 max-w-screen-lg mx-auto">
         <div
             class="flex flex-col md:flex-row items-center justify-center bg-white border border-gray-200 rounded-lg shadow-lg w-full p-5 mb-3 max-w-screen-lg mx-auto dark:border-gray-700 dark:bg-gray-800 relative">
@@ -59,7 +60,7 @@
         </div>
     </section>
 
-    {{-- Top up balance form --}}
+    {{-- Top Up Balance Form --}}
     <section id="top-up-balance" class="p-6 max-w-screen-lg mx-auto">
         <div
             class="flex flex-col md:flex-row items-center justify-center bg-white border border-gray-200 rounded-lg shadow-lg w-full p-5 mb-3 max-w-screen-lg mx-auto dark:border-gray-700 dark:bg-gray-800 relative">
@@ -80,6 +81,9 @@
                             </span>
                             <input type="number" name="amount" id="amount"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-primary-500 focus:border-primary-500">
+                            @error('amount')
+                                <x-error-message :message="$message" />
+                            @enderror
                         </div>
                     </div>
                     <div class="flex justify-center mt-8 md:justify-end">
