@@ -19,7 +19,9 @@ class Booking extends Model
      */
     protected $fillable = [
         'user_id',
-        'date_id',
+        'date_movie_id',
+        'date_showtime_id',
+        'total_price',
         'status',
     ];
 
@@ -29,17 +31,28 @@ class Booking extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'total_price' => 'integer',
         'status' => BookingStatus::class,
     ];
 
     /**
-     * Many to one relation to Date model.
+     * Many to one relation to DateShowtime model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function date(): BelongsTo
+    public function dateShowtime(): BelongsTo
     {
-        return $this->belongsTo(Date::class);
+        return $this->belongsTo(DateShowtime::class);
+    }
+
+    /**
+     * Many to one relation to Movie model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function movie(): BelongsTo
+    {
+        return $this->belongsTo(Movie::class);
     }
 
     /**

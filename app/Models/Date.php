@@ -11,15 +11,6 @@ class Date extends Model
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'date',
-    ];
-
-    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
@@ -35,7 +26,7 @@ class Date extends Model
      */
     public function showtimes(): BelongsToMany
     {
-        return $this->belongsToMany(Showtime::class, 'date_showtime');
+        return $this->belongsToMany(Showtime::class)->using(DateShowtime::class);
     }
 
     /**
@@ -46,15 +37,5 @@ class Date extends Model
     public function movies(): BelongsToMany
     {
         return $this->belongsToMany(Movie::class, 'date_movie');
-    }
-
-    /**
-     * Many to many relation to Seat model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function seats(): BelongsToMany
-    {
-        return $this->belongsToMany(Seat::class, 'booked_seats');
     }
 }

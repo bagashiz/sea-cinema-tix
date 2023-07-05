@@ -34,7 +34,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie): View
     {
-        $movie = $movie->load('dates');
+        $movie = $movie->load('dates.showtimes');
 
         return view('movies.show', compact('movie'));
     }

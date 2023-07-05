@@ -31,6 +31,8 @@ class Movie extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'age_rating' => 'integer',
+        'ticket_price' => 'integer',
         'release_date' => 'date',
     ];
 
@@ -42,6 +44,16 @@ class Movie extends Model
     public function dates(): BelongsToMany
     {
         return $this->belongsToMany(Date::class, 'date_movie');
+    }
+
+    /**
+     * One to many relation to Booking model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bookings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Booking::class);
     }
 
     /**

@@ -35,7 +35,7 @@
                         </li>
                         <hr class="my-2 border-gray-200">
                         <li>
-                            <a href="{{ route('home') }}"
+                            <a href="{{ route('bookings.index') }}"
                                 class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white">
                                 Bookings
                             </a>

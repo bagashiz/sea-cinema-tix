@@ -18,7 +18,6 @@ class DateFactory extends Factory
     public function definition(): array
     {
         return [
-            'showtime_id' => Showtime::factory(),
             'date' => fake()->unique()->dateTimeBetween('now', '+2 weeks')->format('Y-m-d'),
         ];
     }

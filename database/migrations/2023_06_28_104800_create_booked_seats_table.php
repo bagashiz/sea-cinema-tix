@@ -14,15 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('booking_id')
                 ->constrained()
-                ->onDelete('cascade')
-                ->nullable();
-            $table->foreignId('date_id')
-                ->constrained()
+                ->onDelete('cascade');
+            $table->foreignId('date_showtime_id')
+                ->constrained('date_showtime')
                 ->onDelete('cascade');
             $table->foreignId('seat_id')
                 ->constrained()
                 ->onDelete('cascade');
-            $table->datetimes();
         });
     }
 

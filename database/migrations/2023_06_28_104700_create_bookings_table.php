@@ -15,11 +15,15 @@ return new class extends Migration {
             $table->foreignId('user_id')
                 ->constrained()
                 ->onDelete('cascade');
-            $table->foreignId('date_id')
+            $table->foreignId('movie_id')
                 ->constrained()
                 ->onDelete('cascade');
-            $table->enum('status', ['pending', 'paid', 'cancelled'])
-                ->default('pending');
+            $table->foreignId('date_showtime_id')
+                ->constrained('date_showtime')
+                ->onDelete('cascade');
+            $table->bigInteger('total_price')
+                ->default(0);
+            $table->enum('status', ['paid', 'cancelled']);
             $table->datetimes();
         });
     }
