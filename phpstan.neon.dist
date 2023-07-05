@@ -6,5 +6,5 @@ parameters:
         - app/
         - tests/
 
-    level: 8
+    level: 6
     checkGenericClassInNonGenericObjectType: false
