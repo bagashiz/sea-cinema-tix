@@ -100,35 +100,27 @@ class UserController extends Controller
     }
 
     /**
-     * Show redirects to the current user profile page.
+     * Profile redirects to the current user profile page.
      *
      * @param Request $request
      * @return View
      */
-    public function show(Request $request): View
+    public function profile(Request $request): View
     {
         $user = $request->user();
 
-        if ($user) {
-            $bookings = $user->bookings()->get();
-        } else {
-            $bookings = null;
-        }
-
-        return view(
-            'users.show',
-            compact('user', 'bookings')
-        );
+        return view('users.profile', compact('user'));
     }
 
     /**
      * Edit redirects to the current user edit page.
      *
-     * @param User $user
      * @return View
      */
-    public function edit(User $user): View
+    public function edit(): View
     {
+        $user = auth()->user();
+
         return view('users.edit', compact('user'));
     }
 
@@ -141,20 +133,35 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user): RedirectResponse
     {
-        $formFields = $request->validate([
+        $request->validate([
             'username' => ['sometimes', 'required', 'min:5', 'max:20'],
-            'password' => ['sometimes', 'required', 'confirmed', 'min:8', 'max:255'],
             'name' => ['sometimes', 'required', 'min:5', 'max:50'],
             'age' => ['sometimes', 'required', 'integer'],
-            'balance' => ['sometimes', 'required', 'integer'],
+            'amount' => ['sometimes', 'required', 'integer'],
         ]);
 
-        $formFields['password'] = bcrypt($formFields['password']);
+        $user = auth()->user();
 
-        $user->update($formFields);
+        if ($request->has('username')) {
+            $user->username = $request->username;
+        }
+
+        if ($request->has('name')) {
+            $user->name = $request->name;
+        }
+
+        if ($request->has('age')) {
+            $user->age = $request->age;
+        }
+
+        if ($request->has('amount')) {
+            $user->increment('balance', $request->amount);
+        }
+
+        $user->update();
 
         return redirect()
-            ->route('users.show', $user)
-            ->with('success', 'User updated successfully!');
+            ->route('profile')
+            ->with('success', 'Profile updated successfully!');
     }
 }
