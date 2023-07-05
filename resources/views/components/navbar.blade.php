@@ -22,14 +22,14 @@
                     class="flex flex-col font-medium mt-4 rounded-lg bg-primary-500 dark:bg-gray-800 dark:border-gray-700">
                     @auth
                         <li>
-                            <a href="{{ route('home') }}"
+                            <a href="{{ route('profile') }}"
                                 class="font-bold text-lg text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white flex items-center">
                                 <span class="mr-2">
                                     {{ auth()->user()->username }}
                                 </span>
                                 <span
                                     class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                                    Balance: Rp {{ auth()->user()->balance }}
+                                    Balance: Rp {{ number_format(auth()->user()->balance) }}
                                 </span>
                             </a>
                         </li>
