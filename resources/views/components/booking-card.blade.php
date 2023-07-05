@@ -11,7 +11,7 @@
                 {{ $booking->movie->title }}
             </h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-4">
             <div>
                 <h3 class="text-sm font-semibold text-gray-900 dark:text-white">
                     Date and Showtime
@@ -26,7 +26,7 @@
                     Total Price
                 </h3>
                 <p class="text-gray-700 dark:text-gray-300">
-                    Rp {{ $booking->total_price }}
+                    Rp {{ number_format($booking->total_price) }}
                 </p>
             </div>
             <div>

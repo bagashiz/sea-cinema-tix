@@ -27,6 +27,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
     Route::get('/movies/{movie}/book/{date}/{showtime}', [BookingController::class, 'create'])->name('bookings.create');
