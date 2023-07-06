@@ -11,6 +11,15 @@ class Date extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'date',
+    ];
+
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>

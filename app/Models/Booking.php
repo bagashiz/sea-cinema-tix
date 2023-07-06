@@ -38,7 +38,7 @@ class Booking extends Model
     /**
      * Many to one relation to DateShowtime model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function dateShowtime(): BelongsTo
     {
@@ -48,7 +48,7 @@ class Booking extends Model
     /**
      * Many to one relation to Movie model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function movie(): BelongsTo
     {
@@ -58,7 +58,7 @@ class Booking extends Model
     /**
      * Many to one relation to User model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -68,7 +68,7 @@ class Booking extends Model
     /**
      * Many to many relation to Seat model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function seats(): BelongsToMany
     {

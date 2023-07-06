@@ -34,7 +34,7 @@ class Showtime extends Model
     /**
      * Many to many relation to Date model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function date(): BelongsToMany
     {

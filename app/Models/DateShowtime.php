@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class DateShowtime extends Pivot
@@ -17,9 +19,9 @@ class DateShowtime extends Pivot
     /**
      * One to many relation to Booking model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function bookings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);
     }
@@ -27,7 +29,7 @@ class DateShowtime extends Pivot
     /**
      * Many to many relation to Seat model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function seats(): BelongsToMany
     {
@@ -37,9 +39,9 @@ class DateShowtime extends Pivot
     /**
      * Many to one relation to Date model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function date(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function date(): BelongsTo
     {
         return $this->belongsTo(Date::class);
     }
@@ -47,9 +49,9 @@ class DateShowtime extends Pivot
     /**
      * Many to one relation to Showtime model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function showtime(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function showtime(): BelongsTo
     {
         return $this->belongsTo(Showtime::class);
     }

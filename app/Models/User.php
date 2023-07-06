@@ -45,7 +45,7 @@ class User extends Authenticatable
     /**
      * One-to-many relationship with Booking model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function bookings(): HasMany
     {
