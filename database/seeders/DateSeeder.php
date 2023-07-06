@@ -21,7 +21,7 @@ class DateSeeder extends Seeder
         $showtimes = Showtime::all();
 
         // get dates from now to a week later
-        $startDate = now();
+        $startDate = today('Asia/Jakarta');
         $endDate = $startDate->copy()->addWeeks();
 
         while ($startDate->lte($endDate)) {
