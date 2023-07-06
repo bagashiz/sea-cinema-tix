@@ -34,8 +34,11 @@ class MovieController extends Controller
      */
     public function show(Movie $movie): View
     {
-        $movie = $movie->load('dates.showtimes');
+        $currentDate = now('Asia/Jakarta');
+        $currentTime = $currentDate->format('H:i:s');
 
-        return view('movies.show', compact('movie'));
+        $movie = $movie->loadDatesForCurrentWeek();
+
+        return view('movies.show', compact('movie', 'currentDate', 'currentTime'));
     }
 }

@@ -7,7 +7,7 @@
         </h1>
 
         @foreach ($bookings as $booking)
-            <x-booking-card :booking="$booking" />
+            <x-booking-card :booking="$booking" :currentDate="$currentDate" :currentTime="$currentTime" />
         @endforeach
 
         <div class="my-6">

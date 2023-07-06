@@ -80,4 +80,22 @@ class Movie extends Model
             }
         }
     }
+
+    /**
+     * loadDatesForCurrentWeek loads dates for today until a week later.
+     *
+     * @return Movie
+     */
+    public function loadDatesForCurrentWeek(): Movie
+    {
+        $currentDate = today('Asia/Jakarta');
+        $nextWeek = $currentDate->copy()->addWeek();
+
+        return $this->load([
+            'dates' => function ($query) use ($currentDate, $nextWeek) {
+                $query->whereBetween('date', [$currentDate, $nextWeek])
+                    ->with('showtimes');
+            },
+        ]);
+    }
 }

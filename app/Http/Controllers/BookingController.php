@@ -27,9 +27,20 @@ class BookingController extends Controller
     public function create(Movie $movie, Date $date, Showtime $showtime): View|RedirectResponse
     {
         $user = User::find(auth()->id());
+
+        // check if the user is old enough to watch the movie
         if ($user->age < $movie->age_rating) {
             return back()
-                ->with('error', 'You are not old enough to watch this movie.');
+                ->with('error', 'You are not old enough to watch this movie!');
+        }
+
+        $currentDate = today('Asia/Jakarta');
+        $currentTime = $currentDate->format('H:i:s');
+
+        // check if the date and showtime is in the past of the current date and time
+        if ($date->date < $currentDate && $showtime->start_time < $currentTime) {
+            return back()
+                ->with('error', 'Cannot book tickets for past dates and showtimes!');
         }
 
         $seats = Seat::all();
@@ -65,6 +76,7 @@ class BookingController extends Controller
         $booking->total_price = count($request->seats) * $movie->ticket_price;
         $booking->status = BookingStatus::PAID;
 
+        // check if the user has enough balance to book the tickets
         if ($user->balance < $booking->total_price) {
             return back()
                 ->with('error', 'You do not have enough balance to book these tickets!');
@@ -97,7 +109,10 @@ class BookingController extends Controller
             ->latest()
             ->paginate(5);
 
-        return view('bookings.index', compact('bookings'));
+        $currentDate = now('Asia/Jakarta');
+        $currentTime = $currentDate->format('H:i:s');
+
+        return view('bookings.index', compact('bookings', 'currentDate', 'currentTime'));
     }
 
     /**
