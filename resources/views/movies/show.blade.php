@@ -30,23 +30,12 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 @foreach ($movie->dates as $date)
-                    <div
-                        class="border shadow-lg border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center mb-4">
-                        <h3 class="text-xl font-semibold mb-4">{{ $date->date->format('D, j M Y') }}</h3>
-
-                        <ul class="text-center">
-                            @foreach ($date->showtimes as $showtime)
-                                <li>
-                                    <a href="{{ route('bookings.create', [$movie, $date, $showtime]) }}">
-                                        <button type="button"
-                                            class="focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs px-5 py-2.5 mr-2 mb-2">
-                                            {{ $showtime->start_time }} - {{ $showtime->end_time }}
-                                        </button>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
+                    <x-date-card :date="$date" :movie="$movie" :currentDate="$currentDate" :currentTime="$currentTime">
+                        @foreach ($date->showtimes as $showtime)
+                            <x-showtime-button :showtime="$showtime" :movie="$movie" :date="$date" :currentDate="$currentDate"
+                                :currentTime="$currentTime" />
+                        @endforeach
+                    </x-date-card>
                 @endforeach
             </div>
         </div>

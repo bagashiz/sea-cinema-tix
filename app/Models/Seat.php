@@ -23,7 +23,7 @@ class Seat extends Model
     /**
      * Many to many relation to Booking model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function bookings(): BelongsToMany
     {
@@ -33,7 +33,7 @@ class Seat extends Model
     /**
      * Many to many relation to DateShowtime model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function dateShowtimes(): BelongsToMany
     {

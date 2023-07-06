@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Movie extends Model
 {
@@ -39,7 +40,7 @@ class Movie extends Model
     /**
      * Many to many relation to Showtime model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function dates(): BelongsToMany
     {
@@ -49,9 +50,9 @@ class Movie extends Model
     /**
      * One to many relation to Booking model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function bookings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);
     }
@@ -78,5 +79,23 @@ class Movie extends Model
                 $query->orderBy($sort);
             }
         }
+    }
+
+    /**
+     * loadDatesForCurrentWeek loads dates for today until a week later.
+     *
+     * @return Movie
+     */
+    public function loadDatesForCurrentWeek(): Movie
+    {
+        $currentDate = today('Asia/Jakarta');
+        $nextWeek = $currentDate->copy()->addWeek();
+
+        return $this->load([
+            'dates' => function ($query) use ($currentDate, $nextWeek) {
+                $query->whereBetween('date', [$currentDate, $nextWeek])
+                    ->with('showtimes');
+            },
+        ]);
     }
 }
