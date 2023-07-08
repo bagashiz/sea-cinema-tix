@@ -30,7 +30,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 @foreach ($movie->dates as $date)
-                    <x-date-card :date="$date" :movie="$movie" :currentDate="$currentDate" :currentTime="$currentTime">
+                    <x-date-card :date="$date">
                         @foreach ($date->showtimes as $showtime)
                             <x-showtime-button :showtime="$showtime" :movie="$movie" :date="$date" :currentDate="$currentDate"
                                 :currentTime="$currentTime" />
