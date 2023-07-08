@@ -63,8 +63,12 @@
 
         {{-- show cancel button if booking is not cancelled and date and showtime is not passed --}}
         @php
-            $isPastDateTime = $booking->dateShowtime->date->date < $currentDate && $booking->dateShowtime->showtime->start_time < $currentTime;
-            $isCancelled = $isPastDateTime || $booking->status->value === 'cancelled';
+            // date formatting
+            $formattedDate = $booking->dateShowtime->date->date->format('Y-m-d');
+            $isToday = $formattedDate == $currentDate;
+            $isPastDate = $formattedDate < $currentDate;
+            $isPastShowtime = $booking->dateShowtime->showtime->start_time < $currentTime;
+            $isCancelled = $isPastDate || ($isPastShowtime && $isToday) || $booking->status->value == 'cancelled';
         @endphp
 
         @if (!$isCancelled)

@@ -1,7 +1,12 @@
 @props(['movie', 'date', 'showtime', 'currentDate', 'currentTime'])
 
 @php
-    $disabled = $date->date < $currentDate && $showtime->start_time < $currentTime;
+    // date formatting
+    $formattedDate = $date->date->format('Y-m-d');
+    $isToday = $formattedDate == $currentDate;
+    $isPastDate = $formattedDate < $currentDate;
+    $isPastShowtime = $showtime->start_time < $currentTime;
+    $disabled = $isPastDate || ($isToday && $isPastShowtime);
 @endphp
 
 <li>

@@ -34,11 +34,17 @@ class BookingController extends Controller
                 ->with('error', 'You are not old enough to watch this movie!');
         }
 
-        $currentDate = today('Asia/Jakarta');
-        $currentTime = $currentDate->format('H:i:s');
+        $currentDate = today('Asia/Jakarta')->format('Y-m-d');
+        $currentTime = now('Asia/Jakarta')->format('H:i:s');
+
+        // date formatting
+        $formattedDate = $date->date->format('Y-m-d');
+        $isToday = $formattedDate == $currentDate;
+        $isPastDate = $formattedDate < $currentDate;
+        $isPastShowtime = $showtime->start_time < $currentTime;
 
         // check if the date and showtime is in the past of the current date and time
-        if ($date->date < $currentDate && $showtime->start_time < $currentTime) {
+        if ($isPastDate || ($isToday && $isPastShowtime)) {
             return back()
                 ->with('error', 'Cannot book tickets for past dates and showtimes!');
         }
@@ -109,8 +115,8 @@ class BookingController extends Controller
             ->latest()
             ->paginate(5);
 
-        $currentDate = now('Asia/Jakarta');
-        $currentTime = $currentDate->format('H:i:s');
+        $currentDate = today('Asia/Jakarta')->format('Y-m-d');
+        $currentTime = now('Asia/Jakarta')->format('H:i:s');
 
         return view('bookings.index', compact('bookings', 'currentDate', 'currentTime'));
     }
