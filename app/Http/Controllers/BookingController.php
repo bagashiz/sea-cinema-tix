@@ -63,7 +63,7 @@ class BookingController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'seats' => ['required', 'array', 'min:1', 'exists:seats,id'],
+            'seats' => ['required', 'array', 'min:1', 'max:6', 'exists:seats,id'],
         ]);
 
         $user = User::find(auth()->id());
