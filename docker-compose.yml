@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   seacinematix:
-    image: ghcr.io/bagashiz/sea-cinema-tix:latest
+    image: ghcr.io/bagashiz/sea-cinema-tix:main
     container_name: seacinematix
     ports:
       - '8000:8000'
